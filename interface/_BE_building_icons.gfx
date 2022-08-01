@@ -1,0 +1,15 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_early_university"
+		texturefile = "gfx//interface//BE//buildings//early_university.tga"
+		loadType = "INGAME"
+	}
+	
+	spriteType = {
+		name = "GFX_public_school"
+		texturefile = "gfx//interface//BE//buildings//public_school.tga"
+		loadType = "INGAME"
+	}
+
+}

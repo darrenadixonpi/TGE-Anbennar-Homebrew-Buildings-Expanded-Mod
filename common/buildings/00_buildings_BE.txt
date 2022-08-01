@@ -1,0 +1,413 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new buildings, make sure they are uniquely named.
+
+# cost = x #==> cost in $ to build (subject to other modifiers)
+# time = x #==> number of months to build.
+# modifier = m # a modifier on the province that the building gives
+# trigger = t # an and trigger that needs to be fullfilled to build and keep the building
+# one_per_country = yes/no # if yes, only one of these can exist in a country
+# manufactory = { trade_good trade_good } # list of trade goods that get a production bonus
+# onmap = yes/no # show as a sprite on the map
+
+# FROM = owner
+# ROOT = province
+
+# Building AI is now mainly hard-coded. The AI will estimate how much it gains yearly from each building,
+# convert the value to ducats, and take the building with biggest yearly return as a percentage of the build cost.
+# If lower than 1%, the AI will not consider the yearly return worth it.
+# It will also require higher yearly return if the economy in not in prime shape.
+# Forts' value also get converted to a yearly return based on terrain and strategic position, as well as available budget for fort maintenance.
+
+# AI can still be modded though; it will multiply the yearly return with the value of ai_will_do.
+# If you don't want the AI to build a building at all, make ai_will_do become 0.
+# AI will consider each building to be worth 0.01 ducats per year as a base, so making ai_will_do above cost will have them build it at some point.
+# It will still check whether it can afford a building before doing so though, but may save up to it.
+
+
+################################################
+# Tier 1, 15th Century Buildings
+################################################
+
+early_university = {
+	cost = 500
+	time = 60
+	modifier = {
+		allowed_num_of_buildings = 1
+		local_development_cost = -0.125
+		local_manpower_modifier = -0.2
+		local_state_maintenance_modifier = 0.25
+	}
+
+	on_built = {
+		add_development_from_building = {
+			building = early_university
+			type = tax
+			value = 1
+		}
+	}
+	on_destroyed = {
+		remove_development_from_building = {
+			building = early_university
+			type = tax
+			value = 1
+		}
+	}
+
+	ai_will_do = {
+		factor = 10.0
+				#LIMIT
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 3 }
+		}
+		modifier = {
+			factor = 0.3
+			FROM = { num_of_loans = 2 }
+		}
+		modifier = {
+			factor = 0.5
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 0.75
+			has_no_manufactory_trigger = yes
+		}
+		modifier = {
+			factor = 0.75
+			FROM = { NOT = { treasury = 500 } }
+		}
+		modifier = {
+			factor = 0.75
+			FROM = { is_in_deficit = yes }
+		}
+		#TREASURY
+		modifier = {
+			factor = 1.2
+			FROM = { treasury = 500 }
+		}
+		modifier = {
+			factor = 1.3
+			FROM = { treasury = 750 }
+		}
+		modifier = {
+			factor = 1.4
+			FROM = { treasury = 1000 }
+		}
+		#IDEA GROUP
+		modifier = {
+			factor = 2.0
+			FROM = { has_idea_group = innovativeness_ideas }
+		}
+		#DEVELOPMENT
+		modifier = {
+			factor = 3.0
+			development = 15
+		}
+		modifier = {
+			factor = 3.5
+			development = 20
+		}
+		modifier = {
+			factor = 4.0
+			development = 25
+		}
+		modifier = {
+			factor = 4.5
+			development = 30
+		}
+		modifier = {
+			factor = 5.0
+			development = 35
+		}
+		#MODIFIERS
+		modifier = {
+			factor = 7.5
+			xorme_wealthy_province_trigger = yes
+		}
+		#BUILDINGS
+		modifier = {
+			factor = 7.5
+			xorme_has_every_essential_building_trigger = yes
+		}
+		modifier = {
+			factor = 4
+			is_year = 1690 # Enlightenment spawns in 1700
+			not = {
+				owner = {
+					has_institution = enlightenment
+				}
+			}
+			not = {
+				provincial_institution_progress = {
+					which = enlightenment
+					value = 20
+				}
+			}
+		}
+	}
+}
+
+################################################
+# Tier 2, 16th Century Buildings
+################################################
+
+
+
+################################################
+# Tier 3, 17th Century Buildings
+################################################
+
+public_school = {
+	cost = 750
+	time = 60
+	modifier = {
+		allowed_num_of_buildings = 1
+		local_development_cost = -0.075
+		local_tax_efficiency = 0.1
+		local_production_efficiency = 0.15
+		local_manpower_modifier = -0.25
+		local_institution_spread = 0.50
+		local_state_maintenance_modifier = 0.50
+	}
+
+	on_built = {
+		add_development_from_building = {
+			building = public_school
+			type = tax
+			value = 2
+		}
+	}
+	on_destroyed = {
+		remove_development_from_building = {
+			building = public_school
+			type = tax
+			value = 2
+		}
+	}
+	on_obsolete = {
+	}
+
+	ai_will_do = {
+		factor = 10.0
+				#LIMIT
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 3 }
+		}
+		modifier = {
+			factor = 0.3
+			FROM = { num_of_loans = 2 }
+		}
+		modifier = {
+			factor = 0.5
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 0.75
+			has_no_manufactory_trigger = yes
+		}
+		modifier = {
+			factor = 0.75
+			FROM = { NOT = { treasury = 750 } }
+		}
+		modifier = {
+			factor = 0.75
+			FROM = { is_in_deficit = yes }
+		}
+		#TREASURY
+		modifier = {
+			factor = 1.2
+			FROM = { treasury = 750 }
+		}
+		modifier = {
+			factor = 1.3
+			FROM = { treasury = 1000 }
+		}
+		modifier = {
+			factor = 1.4
+			FROM = { treasury = 1250 }
+		}
+		#IDEA GROUP
+		modifier = {
+			factor = 2.0
+			FROM = { has_idea_group = innovativeness_ideas }
+		}
+		#DEVELOPMENT
+		modifier = {
+			factor = 3.0
+			development = 20
+		}
+		modifier = {
+			factor = 3.5
+			development = 25
+		}
+		modifier = {
+			factor = 4.0
+			development = 30
+		}
+		modifier = {
+			factor = 4.5
+			development = 35
+		}
+		modifier = {
+			factor = 5.0
+			development = 40
+		}
+		#MODIFIERS
+		modifier = {
+			factor = 7.5
+			xorme_wealthy_province_trigger = yes
+		}
+		#BUILDINGS
+		modifier = {
+			factor = 7.5
+			xorme_has_every_essential_building_trigger = yes
+		}
+		modifier = {
+			factor = 3
+			is_year = 1690 # Enlightenment spawns in 1700
+			not = {
+				owner = {
+					has_institution = enlightenment
+				}
+			}
+			not = {
+				provincial_institution_progress = {
+					which = enlightenment
+					value = 20
+				}
+			}
+		}
+	}
+}
+
+################################################
+# Tier 4, 18th Century Buildings
+################################################
+
+university = {
+	cost = 1000
+	time = 60
+	make_obsolete = early_university
+	modifier = {
+		allowed_num_of_buildings = 1
+		local_development_cost = -0.25
+		local_manpower_modifier = -0.4
+		global_institution_spread = 0.001
+		local_state_maintenance_modifier = 0.50
+	}
+
+	on_built = {
+		add_development_from_building = {
+			building = university
+			type = tax
+			value = 3
+		}
+	}
+	on_destroyed = {
+		remove_development_from_building = {
+			building = university
+			type = tax
+			value = 3
+		}
+	}
+	on_obsolete = {
+	}
+
+	ai_will_do = {
+		factor = 10.0
+				#LIMIT
+		modifier = {
+			factor = 0
+			FROM = { num_of_loans = 3 }
+		}
+		modifier = {
+			factor = 0.3
+			FROM = { num_of_loans = 2 }
+		}
+		modifier = {
+			factor = 0.5
+			FROM = { num_of_loans = 1 }
+		}
+		modifier = {
+			factor = 0.75
+			has_no_manufactory_trigger = yes
+		}
+		modifier = {
+			factor = 0.75
+			FROM = { NOT = { treasury = 1000 } }
+		}
+		modifier = {
+			factor = 0.75
+			FROM = { is_in_deficit = yes }
+		}
+		#TREASURY
+		modifier = {
+			factor = 1.2
+			FROM = { treasury = 1000 }
+		}
+		modifier = {
+			factor = 1.3
+			FROM = { treasury = 1250 }
+		}
+		modifier = {
+			factor = 1.4
+			FROM = { treasury = 1500 }
+		}
+		#IDEA GROUP
+		modifier = {
+			factor = 2.0
+			FROM = { has_idea_group = innovativeness_ideas }
+		}
+		#DEVELOPMENT
+		modifier = {
+			factor = 3.0
+			development = 25
+		}
+		modifier = {
+			factor = 3.5
+			development = 30
+		}
+		modifier = {
+			factor = 4.0
+			development = 35
+		}
+		modifier = {
+			factor = 4.5
+			development = 40
+		}
+		modifier = {
+			factor = 5.0
+			development = 45
+		}
+		#MODIFIERS
+		modifier = {
+			factor = 7.5
+			xorme_wealthy_province_trigger = yes
+		}
+		#BUILDINGS
+		modifier = {
+			factor = 7.5
+			xorme_has_every_essential_building_trigger = yes
+		}
+		modifier = {
+			factor = 2
+			is_year = 1690 # Enlightenment spawns in 1700
+			not = {
+				owner = {
+					has_institution = enlightenment
+				}
+			}
+			not = {
+				provincial_institution_progress = {
+					which = enlightenment
+					value = 20
+				}
+			}
+		}
+	}
+}
+
+################################################
+# Manufactories
+################################################

@@ -1,0 +1,13 @@
+﻿l_english:
+ building_early_road:0 "Early Road"
+ building_early_road_desc:0 "Over time, people found the best routes which formed dirt roads. It would best if we took care of them and put some signs up."
+ building_gravel_road:0 "Gravel Road"
+ building_gravel_road_desc:0 "Gravel is a much better foundation for roads than simple pressured dirt."
+ building_royal_road:0 "Royal Road"
+ building_royal_road_desc:0 "Intended for royalty only."
+ building_macadam_road:0 "Macadam Road"
+ building_macadam_road_desc:0 "Made from the finest macadamia nuts."
+ building_railroad: "Railroads"
+ building_railroad_desc: "Time to railroad your enemies."
+ building_early_university: "Early University"
+ building_public_school: "Public School"

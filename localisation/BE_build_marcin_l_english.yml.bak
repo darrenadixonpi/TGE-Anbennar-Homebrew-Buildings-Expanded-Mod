@@ -1,0 +1,6 @@
+l_english:
+ building_early_university:0 "Early University"
+ building_early_university_desc:0 "Universities have existed since ancient times. While these are not your own Great Library, they will suffice for the time being."
+ 
+ building_public_school: "Public School"
+ building_public_school-desc: "Public schools are essential to a thriving society. They may also act as an additional avenue for public indoctrination!"
